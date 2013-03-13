@@ -20,3 +20,8 @@
 file '/var/tmp/bradly' do
   content 'Hello, World!'
 end
+
+package 'intu-redis' do
+  version "#{node['jetty']['version']}-1" 
+end
+
