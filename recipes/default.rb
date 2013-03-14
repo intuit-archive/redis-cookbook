@@ -22,6 +22,6 @@ file '/var/tmp/bradly' do
 end
 
 package 'intu-redis' do
-  version "#{node['jetty']['version']}-1" 
+  version "#{node['redis']['version']}-1" 
 end
 
