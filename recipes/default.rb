@@ -36,7 +36,7 @@ cookbook_file "/etc/redis/6379.conf" do
   mode "0644"
   owner user
   group node['redis']['group']
-  variables :redis_exec     => node['redis']['path'],
+  variables :redis_path     => node['redis']['path'],
             :redis_pidfile  => node['redis']['pidfile'],
             :redis_conf     => node['redis']['conf']
 
