@@ -22,14 +22,14 @@ directory "/var/lib/redis" do
   mode 0755
 end
 
-directory "/var/lib/redis/6379" do
+directory "/var/lib/redis" do
   owner user
   group group
   mode 0755
 end
 
-template "/etc/init.d/redis_6379" do
-  source "redis_6379.erb"
+template "/etc/init.d/redis" do
+  source "redis.erb"
   mode "0755"
   owner "root"
   group "root"
@@ -40,13 +40,13 @@ template "/etc/init.d/redis_6379" do
 
 end
 
-cookbook_file "/etc/redis/6379.conf" do
+cookbook_file "/etc/redis/redis.conf" do
   mode "0644"
   owner user
   group group
 end
 
-service "redis_6379" do
+service "redis" do
   supports :restart => true
   action [:enable, :start]
 end
