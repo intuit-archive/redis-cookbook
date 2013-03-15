@@ -16,6 +16,12 @@ directory "/var/run/redis" do
   mode 0755
 end
 
+directory "/etc/redis" do
+  owner user
+  group group
+  mode 0755
+end
+
 directory "/var/lib/redis" do
   owner user
   group group
@@ -30,9 +36,9 @@ end
 
 template "/etc/init.d/redis" do
   source "redis.erb"
-  mode "0755"
   owner "root"
   group "root"
+  mode "0755"
   variables :redis_path     => node['redis']['path'],
             :redis_pidfile  => node['redis']['pidfile'],
             :redis_user     => node['redis']['user'],
