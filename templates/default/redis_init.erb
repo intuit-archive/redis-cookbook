@@ -26,8 +26,8 @@ REDISPORT="<%= @redis_port %>"
 # Source function library.
 . /etc/init.d/functions
 
-case "$1" in
-    start)
+start () 
+{
         if [ -f $PIDFILE ]
         then
                 echo "$PIDFILE exists, process is already running or crashed"
@@ -39,8 +39,10 @@ case "$1" in
                 echo
                 exit $RETVAL
         fi
-        ;;
-    stop)
+}
+
+stop() 
+{
         if [ ! -f $PIDFILE ]
         then
                 echo "$PIDFILE does not exist, process is not running"
@@ -56,8 +58,25 @@ case "$1" in
                 rm /var/lock/subsys/redis
                 echo "Redis stopped"
         fi
-        ;;
+} 
+
+restart() 
+{
+        stop
+        start
+}
+
+case "$1" in
+        start)
+             start
+             ;;
+    stop)
+             stop
+             ;;
+    restart)
+             restart 
+             ;;
     *)
-        echo "Please use start or stop as first argument"
+        echo "Please use start, stop, or restart as first argument"
         ;;
 esac
