@@ -31,7 +31,7 @@ directory "/var/lib/redis/6379" do
   action :create
 end
 
-cookbook_file "/etc/init.d/redis_6379" do
+template "/etc/init.d/redis_6379" do
   source "redis_6379.erb"
   mode "0755"
   owner "root"
@@ -42,7 +42,7 @@ cookbook_file "/etc/init.d/redis_6379" do
 
 end
 
-template "/etc/redis/6379.conf" do
+cookbook_file "/etc/redis/6379.conf" do
   mode "0644"
   owner user
   group group
