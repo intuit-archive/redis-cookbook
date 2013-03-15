@@ -1,1 +1,7 @@
 default['redis']['version'] = '2.6.11'
+default['redis']['user'] = 'redis'
+default['redis']['group'] = 'redis'
+default['redis']['path'] = '/usr/bin'
+default['redis']['pidfile'] = '/var/run/redis/6379.pid'
+default['redis']['conf'] = '/etc/redis/6379.conf'
+default['redis']['port'] = '6379'

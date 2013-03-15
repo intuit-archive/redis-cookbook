@@ -1,27 +1,55 @@
-#
-# Cookbook Name:: redis
-# Recipe:: default
-#
-# Copyright (C) 2013 Intuit, Inc.
-# 
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-# 
-#    http://www.apache.org/licenses/LICENSE-2.0
-# 
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+user = node['redis']['user']
+group = node['redis']['group']
 
-file '/var/tmp/bradly' do
-  content 'Hello, World!'
+user user do
+  comment "I run redis"
+  shell "/bin/bash"
 end
 
-package 'intu-redis' do
-  version "#{node['redis']['version']}-1" 
+package "intu-redis" do
+  version "#{node['redis']['version']}-1"
 end
 
+directory "/var/run/redis" do
+  owner user
+  group group
+  mode 0755
+  action :create
+end
+
+directory "/var/lib/redis" do
+  owner user
+  group group
+  mode 0755
+  action :create
+end
+
+directory "/var/lib/redis/6379" do
+  owner user
+  group group
+  mode 0755
+  action :create
+end
+
+cookbook_file "/etc/redis/6379.conf" do
+  source "6379.conf"
+  mode "0644"
+  owner user
+  group node['redis']['group']
+  variables :redis_exec     => node['redis']['path'],
+            :redis_pidfile  => node['redis']['pidfile'],
+            :redis_conf     => node['redis']['conf'],
+            :redis_port     => 6379
+
+end
+
+template "/etc/init.d/redis_6379" do
+  mode "0755"
+  owner "root"
+  group "root"
+end
+
+service "redis_6379" do
+  supports :restart => true
+  action [:enable, :start]
+end
