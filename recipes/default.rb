@@ -32,12 +32,13 @@ template "/etc/init.d/redis" do
 
 end
 
-template "/etc/redis/redis.conf" do
+template node['redis']['conf'] do
   source "redis_conf.erb"
   mode "0644"
   owner user
   group group
-  variables :redis_port     => node['redis']['port']
+  variables :redis_port     => node['redis']['port'],
+            :redis_pidfile  => node['redis']['pidfile']
 
 end
 
