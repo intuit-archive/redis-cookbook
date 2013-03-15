@@ -31,21 +31,21 @@ directory "/var/lib/redis/6379" do
   action :create
 end
 
-cookbook_file "/etc/redis/6379.conf" do
-  source "6379.conf"
-  mode "0644"
-  owner user
-  group node['redis']['group']
+cookbook_file "/etc/init.d/redis_6379" do
+  source "redis_6379.erb"
+  mode "0755"
+  owner "root"
+  group "root"
   variables :redis_path     => node['redis']['path'],
             :redis_pidfile  => node['redis']['pidfile'],
             :redis_conf     => node['redis']['conf']
 
 end
 
-template "/etc/init.d/redis_6379" do
-  mode "0755"
-  owner "root"
-  group "root"
+template "/etc/redis/6379.conf" do
+  mode "0644"
+  owner user
+  group group
 end
 
 service "redis_6379" do
