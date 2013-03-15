@@ -7,28 +7,25 @@ user user do
 end
 
 package "intu-redis" do
-  version "#{node['redis']['version']}-1"
+  version "#{node['redis']['version']}"
 end
 
 directory "/var/run/redis" do
   owner user
   group group
   mode 0755
-  action :create
 end
 
 directory "/var/lib/redis" do
   owner user
   group group
   mode 0755
-  action :create
 end
 
 directory "/var/lib/redis/6379" do
   owner user
   group group
   mode 0755
-  action :create
 end
 
 template "/etc/init.d/redis_6379" do
