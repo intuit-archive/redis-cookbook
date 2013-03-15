@@ -7,7 +7,7 @@ user user do
   shell "/bin/bash"
 end
 
-package "intu-redis" do
+package node['redis']['packagename'] do
   version "#{node['redis']['version']}"
 end
 
