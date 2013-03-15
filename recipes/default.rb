@@ -16,6 +16,12 @@ directory "/var/run/redis" do
   mode 0755
 end
 
+directory "/var/log/redis" do
+  owner user
+  group group
+  mode 0755
+end
+
 directory "/etc/redis" do
   owner user
   group group
