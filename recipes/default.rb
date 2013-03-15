@@ -38,6 +38,7 @@ template "/etc/init.d/redis_6379" do
   group "root"
   variables :redis_path     => node['redis']['path'],
             :redis_pidfile  => node['redis']['pidfile'],
+            :redis_user     => node['redis']['user'],
             :redis_conf     => node['redis']['conf']
 
 end
