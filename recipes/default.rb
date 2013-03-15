@@ -38,8 +38,7 @@ cookbook_file "/etc/redis/6379.conf" do
   group node['redis']['group']
   variables :redis_exec     => node['redis']['path'],
             :redis_pidfile  => node['redis']['pidfile'],
-            :redis_conf     => node['redis']['conf'],
-            :redis_port     => 6379
+            :redis_conf     => node['redis']['conf']
 
 end
 

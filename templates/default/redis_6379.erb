@@ -36,7 +36,7 @@ case "$1" in
                 RETVAL=$?
                 [ $RETVAL -eq 0 ] && touch /var/lock/subsys/redis_6379
                 echo
-                return $RETVAL
+                exit $RETVAL
         fi
         ;;
     stop)
@@ -52,6 +52,7 @@ case "$1" in
                     echo "Waiting for Redis to shutdown ..."
                     sleep 1
                 done
+                rm /var/lock/susbsys/redis_6379
                 echo "Redis stopped"
         fi
         ;;
