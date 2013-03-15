@@ -1,6 +1,7 @@
 user = node['redis']['user']
 group = node['redis']['group']
-
+dirs = [ "/var/run/redis", "/var/log/redis", "/var/lib/redis", "/etc/redis" ]
+ 
 user user do
   comment "I run redis"
   shell "/bin/bash"
@@ -10,34 +11,12 @@ package "intu-redis" do
   version "#{node['redis']['version']}"
 end
 
-directory "/var/run/redis" do
-  owner user
-  group group
-  mode 0755
-end
-
-directory "/var/log/redis" do
-  owner user
-  group group
-  mode 0755
-end
-
-directory "/etc/redis" do
-  owner user
-  group group
-  mode 0755
-end
-
-directory "/var/lib/redis" do
-  owner user
-  group group
-  mode 0755
-end
-
-directory "/var/lib/redis" do
-  owner user
-  group group
-  mode 0755
+dirs.each do |dir|
+  directory dir do
+    owner user
+    group group
+    mode "0755"
+  end
 end
 
 template "/etc/init.d/redis" do
