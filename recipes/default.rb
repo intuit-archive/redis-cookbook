@@ -41,21 +41,25 @@ directory "/var/lib/redis" do
 end
 
 template "/etc/init.d/redis" do
-  source "redis.erb"
+  source "redis_init.erb"
   owner "root"
   group "root"
   mode "0755"
   variables :redis_path     => node['redis']['path'],
             :redis_pidfile  => node['redis']['pidfile'],
             :redis_user     => node['redis']['user'],
+            :redis_port     => node['redis']['port'],
             :redis_conf     => node['redis']['conf']
 
 end
 
-cookbook_file "/etc/redis/redis.conf" do
+template "/etc/redis/redis.conf" do
+  source "redis_conf.erb"
   mode "0644"
   owner user
   group group
+  variables :redis_port     => node['redis']['port']
+
 end
 
 service "redis" do
