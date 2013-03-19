@@ -7,7 +7,7 @@ user user do
   shell "/bin/bash"
 end
 
-package node['redis']['packagename'] do
+package node['redis']['package_name'] do
   version "#{node['redis']['version']}"
 end
 

@@ -1,5 +1,5 @@
 default['redis']['version'] = '2.6.11-1'
-default['redis']['packagename'] = 'intu-redis'
+default['redis']['package_name'] = 'intu-redis'
 default['redis']['user'] = 'redis'
 default['redis']['group'] = 'redis'
 default['redis']['path'] = '/usr/bin'
