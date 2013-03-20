@@ -66,17 +66,34 @@ restart()
         start
 }
 
+status()
+{
+        if [ ! -f $PIDFILE ]
+        then
+                echo "$PIDFILE does not exist, process is not running"
+                exit 1
+        else
+                PID=$(cat $PIDFILE)
+                echo "REDIS is running: PID = $PID"
+                exit 0
+        fi
+}
+
 case "$1" in
         start)
-             start
-             ;;
-    stop)
-             stop
-             ;;
-    restart)
-             restart 
-             ;;
-    *)
-        echo "Please use start, stop, or restart as first argument"
-        ;;
+            start
+            ;;
+        stop)
+            stop
+            ;;
+        restart)
+            restart
+            ;;
+        status)
+            status
+            ;;
+        *)
+            echo "Please use start, stop, or restart as first argument"
+            exit 1
+            ;;
 esac
