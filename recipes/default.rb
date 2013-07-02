@@ -8,7 +8,7 @@ user user do
 end
 
 package node['redis']['package_name'] do
-  version "#{node['redis']['version']}"
+  version node['redis']['version']
 end
 
 dirs.each do |dir|
