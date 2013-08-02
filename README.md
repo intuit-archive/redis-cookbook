@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/intuit/redis-cookbook.png)](http://travis-ci.org/intuit/redis-cookbook)
+
 # redis cookbook
 
 This cookbook installs the redis server found here http://redis.io/
