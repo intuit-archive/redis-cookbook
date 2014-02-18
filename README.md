@@ -13,7 +13,7 @@ Redis is an open source, BSD licensed, advanced key-value store. It is often ref
 
 # Attributes
 The following attributes are configurable currently:
-version, package_name, user, group, path, pidfile, conf, port
+version, package_name, user, group, path, pidfile, conf, port, timeout
 
 # Recipes
 The default recipe installs the redis server and associated binaries.  It also configures the system to run as the redis users.
