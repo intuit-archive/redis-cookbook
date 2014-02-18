@@ -38,7 +38,8 @@ template node['redis']['conf'] do
   owner user
   group group
   variables :redis_port     => node['redis']['port'],
-            :redis_pidfile  => node['redis']['pidfile']
+            :redis_pidfile  => node['redis']['pidfile'],
+            :redis_timeout  => node['redis']['timeout']
 
 end
 
