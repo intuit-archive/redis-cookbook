@@ -1,5 +1,7 @@
 [![Build Status](https://secure.travis-ci.org/intuit/redis-cookbook.png)](http://travis-ci.org/intuit/redis-cookbook)
 
+**!!! This project has been deprecated.  We recommend you search the [Chef Supermarket ](https://supermarket.chef.io/) for a supported alternative !!!**
+
 # redis cookbook
 
 This cookbook installs the redis server found here http://redis.io/
